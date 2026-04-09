@@ -1,0 +1,14 @@
+venv/
+__pycache__/
+*.pyc
+.env
+data/
+outputs/
+logs/
+.pytest_cache/
+*.log
+pip_list.txt
+repair_db.py
+run_output.txt
+test_results*.log
+run_error.log

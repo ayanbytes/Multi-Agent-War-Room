@@ -1,0 +1,78 @@
+{
+  "decision": "ROLL_BACK",
+  "rationale": [
+    "Crash rate increased by 178% (0.82% → 2.27%), exceeding acceptable thresholds and directly impacting revenue and user trust",
+    "Payment success rate dropped by 1.8% (98.4% → 96.7%), posing a critical revenue risk with confirmed user feedback on payment timeouts",
+    "API latency spiked by 72% (183ms → 314ms), degrading user experience and contributing to support ticket surge (+76%)",
+    "40% negative user feedback dominated by crashes (6/30) and performance issues (5/30), indicating widespread usability failures",
+    "Day 1 retention anomaly (z = -2.07) suggests delayed user dissatisfaction, risking long-term engagement"
+  ],
+  "risk_register": [
+    {
+      "risk": "Continued exposure to crashes and payment failures leading to revenue loss and brand damage",
+      "severity": "High",
+      "mitigation": "Immediate rollback to v2.3.0 to restore stability"
+    },
+    {
+      "risk": "Prolonged API latency degrading user experience and increasing churn risk",
+      "severity": "High",
+      "mitigation": "Disable non-critical API calls during checkout and optimize backend queries post-rollback"
+    },
+    {
+      "risk": "Firefox compatibility issues frustrating enterprise users and risking segment-specific churn",
+      "severity": "Medium",
+      "mitigation": "Add browser warning for Firefox 108 users and prioritize patch in v2.4.1"
+    },
+    {
+      "risk": "Support team overload from surge in tickets (+76%) impacting operational efficiency",
+      "severity": "Medium",
+      "mitigation": "Escalate crash/payment tickets and provide workarounds during rollback"
+    },
+    {
+      "risk": "Competitor exploitation of instability narrative damaging brand perception",
+      "severity": "High",
+      "mitigation": "Transparent external communication about rollback and fixes"
+    }
+  ],
+  "action_plan_24_48h": [
+    {
+      "action": "Initiate rollback to v2.3.0 across all environments",
+      "owner": "Engineering"
+    },
+    {
+      "action": "Revert payment flow to v2.3.0 and implement fallback for slow connections",
+      "owner": "Engineering"
+    },
+    {
+      "action": "Add browser warning for Firefox 108 users until patch is deployed",
+      "owner": "Product/Engineering"
+    },
+    {
+      "action": "Escalate crash and payment-related support tickets with workarounds",
+      "owner": "Customer Support"
+    },
+    {
+      "action": "Prepare internal and external communication about rollback and next steps",
+      "owner": "Marketing/Communications"
+    },
+    {
+      "action": "Schedule post-mortem to identify root causes of crashes, latency, and payment failures",
+      "owner": "Engineering Leadership"
+    }
+  ],
+  "communication_plan": {
+    "internal": "Notify all teams (Engineering, Product, Marketing, Sales, CS) about immediate rollback to v2.3.0. Emphasize stability as top priority and outline next steps for v2.4.1 hotfix. Address morale concerns and reinforce focus on quality.",
+    "external": "We are rolling back to the previous stable version (v2.3.0) to address intermittent issues with payments and crashes. A patch (v2.4.1) is in progress to resolve these issues, and we will notify you once it’s available. We apologize for any inconvenience and appreciate your patience."
+  },
+  "confidence_score": 0.95,
+  "confidence_explanation": [
+    "High confidence due to clear quantitative signals (crash rate, payment success, latency) and qualitative feedback (40% negative sentiment)",
+    "Additional validation could include user segmentation analysis (e.g., device, browser, network speed) to identify at-risk groups",
+    "Longer-term retention data (30 days post-release) would help assess delayed churn impact"
+  ],
+  "_metadata": {
+    "generated_at": "2026-04-09T11:55:09.920876",
+    "release_version": "v2.4.0",
+    "model": "mistral-large-latest"
+  }
+}
